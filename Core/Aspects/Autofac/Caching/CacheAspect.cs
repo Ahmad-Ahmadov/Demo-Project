@@ -9,7 +9,6 @@ namespace Core.Aspects.Autofac.Caching
     public class CacheAspect : MethodInterception
     {
         private readonly int _duration;
-
         private ICacheManager _cacheManager;
 
         public CacheAspect(int duration = 15)

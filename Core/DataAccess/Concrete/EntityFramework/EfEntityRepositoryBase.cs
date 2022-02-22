@@ -31,7 +31,7 @@ namespace Core.DataAccess.Concrete.EntityFramework
             using var context = new TContext();
             return context.Set<TEntity>().FirstOrDefault(filter);
         }
-
+        
         public List<TEntity> GetAll(Expression<Func<TEntity,bool>> filter = null)
         {
             using var context = new TContext();
@@ -49,8 +49,8 @@ namespace Core.DataAccess.Concrete.EntityFramework
         public int GetNextId()
         {
             using var context = new TContext();
-            var result = context.Set<TEntity>().ToList().Select(p=>p.GetType()
-            .GetProperties()[0].GetValue(p)).LastOrDefault() as int?;
+            var result = context.Set<TEntity>().ToList().Select(t => t.GetType()
+            .GetProperties()[0].GetValue(t)).LastOrDefault() as int?;
             return result + 1 ?? 1;
         }
     }

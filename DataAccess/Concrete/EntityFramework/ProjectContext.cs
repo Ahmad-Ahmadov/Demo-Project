@@ -8,10 +8,10 @@ namespace DataAccess.Concrete.EntityFramework
     {
         public DbSet<Book> Books { get; set; }
         public DbSet<Author> Authors { get; set; }
-
+        public DbSet<Genre> Genres { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=(localdbMSSQLLocalDB);Database=ProjectDb;Trusted_connection=True");
+            optionsBuilder.UseSqlServer(@"Server=DESKTOP-9N0OBRE;Database=ProjectDb;Trusted_connection=True");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
