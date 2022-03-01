@@ -31,6 +31,13 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
+        [CacheRemoveAspect("Business.Concrete.IAuthorService")]
+        public IResult DeleteAll()
+        {
+            _authorDal.DeleteAll();
+            return new SuccessResult();
+        }
+
         [CacheAspect]
         public IDataResult<Author> Get(int id)
         {

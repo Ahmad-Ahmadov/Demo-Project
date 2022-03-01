@@ -8,6 +8,7 @@ namespace Business.Abstract
         IResult Add(Author author);
         IResult Update(Author author);
         IResult Delete(Author author);
+        IResult DeleteAll();
         IDataResult<Author> Get(int id);
         IDataResult<List<Author>> GetAll();
     }

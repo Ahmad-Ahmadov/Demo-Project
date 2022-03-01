@@ -19,6 +19,7 @@ namespace DataAccess.Concrete.EntityFramework
             modelBuilder.ApplyConfiguration(new AuthorMapper());
             modelBuilder.Entity<Author>().Property(a=>a.Id).ValueGeneratedNever().HasColumnName("Id");
             modelBuilder.Entity<Book>().Property(b=>b.Id).ValueGeneratedNever().HasColumnName("Id");
+            modelBuilder.Entity<Genre>().Property(b => b.Id).ValueGeneratedNever().HasColumnName("Id");
         }
     }
 }

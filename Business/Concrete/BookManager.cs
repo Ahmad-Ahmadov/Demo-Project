@@ -32,6 +32,13 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
+        [CacheRemoveAspect("Business.Concrete.IBookService")]
+        public IResult DeleteAll()
+        {
+            _bookDal.DeleteAll();
+            return new SuccessResult();
+        }
+
         [CacheAspect]
         public IDataResult<Book> Get(int id)
         {

@@ -6,18 +6,18 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BooksController : ControllerBase
+    public class GenresController : ControllerBase
     {
-        private readonly IBookService _bookService;
-        public BooksController(IBookService bookService)
+        private readonly IGenreService _genreService;
+        public GenresController(IGenreService genreService)
         {
-            _bookService = _bookService;
+            _genreService = genreService;
         }
 
         [HttpPost]
-        public IActionResult Add(Book book)
+        public IActionResult Add(Genre genre)
         {
-            var result = _bookService.Add(book);
+            var result = _genreService.Add(genre);
             if (result.Success)
             {
                 return Ok(result);
@@ -26,30 +26,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPut]
-        public IActionResult Update(Book book)
+        public IActionResult Update(Genre genre)
         {
-            var result = _bookService.Update(book);
-            if(result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
-        }
-
-        [HttpDelete]
-        public IActionResult Delete(Book book)
-        {
-            var result = _bookService.Delete(book); 
-            if( result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest();
-        }
-        [HttpDelete("deleteall")]
-        public IActionResult DeleteAll()
-        {
-            var result = _bookService.DeleteAll();
+            var result = _genreService.Update(genre);
             if (result.Success)
             {
                 return Ok(result);
@@ -57,10 +36,21 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("getbyid")]
-        public IActionResult Get(int id)
+        [HttpDelete]
+        public IActionResult Delete(Genre genre)
         {
-            var result = _bookService.Get(id);
+            var result = _genreService.Delete(genre);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpDelete("deleteall")]
+        public IActionResult DeleteAll()
+        {
+            var result = _genreService.DeleteAll();
             if (result.Success)
             {
                 return Ok(result);
@@ -71,12 +61,23 @@ namespace WebAPI.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            var result = _bookService.GetAll();
-            if(result.Success)
+            var result = _genreService.GetAll();
+            if (result.Success)
             {
-                return Ok(result); 
+                return Ok(result);
             }
-            return BadRequest();
+            return BadRequest(result);
+        }
+
+        [HttpGet("getbyid")]
+        public IActionResult Get(int id)
+        {
+            var result = _genreService.Get(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
         }
     }
 }
