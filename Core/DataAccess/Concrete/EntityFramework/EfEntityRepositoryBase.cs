@@ -1,5 +1,6 @@
 ﻿using Core.DataAccess.Abstract;
 using Core.Entities.Abstract;
+using Core.Extensions;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
@@ -52,6 +53,12 @@ namespace Core.DataAccess.Concrete.EntityFramework
             var result = context.Set<TEntity>().ToList().Select(t => t.GetType()
             .GetProperties()[0].GetValue(t)).LastOrDefault() as int?;
             return result + 1 ?? 1;
+        }
+        public void DeleteAll()
+        {
+            using var context = new TContext();
+            context.Set<TEntity>().Clear();
+            context.SaveChanges();
         }
     }
 }

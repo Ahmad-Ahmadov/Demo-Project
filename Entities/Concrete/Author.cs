@@ -8,5 +8,5 @@ namespace Entities.Concrete
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public byte[]? AuthorPhoto { get; set; }
-    }
+    }// p=>p
 }
