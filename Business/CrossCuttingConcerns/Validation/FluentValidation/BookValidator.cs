@@ -16,6 +16,7 @@ namespace Business.CrossCuttingConcerns.Validation.FluentValidation
             RuleFor(p=>p.BookPhoto).NotNull();
 
             RuleFor(p => p.Price).GreaterThan(0);
+            RuleFor(p => p.Price).NotNull();
         }
     }
 }
