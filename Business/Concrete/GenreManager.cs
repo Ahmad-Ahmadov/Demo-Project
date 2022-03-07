@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
+using Business.CrossCuttingConcerns.Validation.FluentValidation;
 using Core.Aspects.Autofac.Caching;
+using Core.Aspects.Autofac.Validation;
 using Core.Result.Abstract;
 using Core.Result.Concrete;
 using DataAccess.Abstract;
@@ -16,6 +18,7 @@ namespace Business.Concrete
         }
 
         [CacheRemoveAspect("Business.Abstract.IGenreService.Get")]
+        [ValidationAspect(typeof(GenreValidator))]
         public IResult Add(Genre genre)
         {
             _genreDal.Add(genre);
@@ -23,6 +26,7 @@ namespace Business.Concrete
         }
 
         [CacheRemoveAspect("Business.Abstract.IGenreService.Get")]
+        [ValidationAspect(typeof(GenreValidator))]
         public IResult Update(Genre genre)
         {
             _genreDal.Update(genre);
