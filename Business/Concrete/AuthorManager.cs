@@ -16,7 +16,8 @@ namespace Business.Concrete
         {
             _authorDal = authorDal;
         }
-        [CacheRemoveAspect("Business.Concrete.IAuthorService")]
+
+        [CacheRemoveAspect("Business.Abstract.IAuthorService.Get")]
         [ValidationAspect(typeof(AuthorValidator))]
         public IResult Add(Author author)
         {
@@ -24,14 +25,14 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
-        [CacheRemoveAspect("Business.Concrete.IAuthorService")]
+        [CacheRemoveAspect("Business.Abstract.IAuthorService.Get")]
         public IResult Delete(Author author)
         {
             _authorDal.Delete(author);
             return new SuccessResult();
         }
 
-        [CacheRemoveAspect("Business.Concrete.IAuthorService")]
+        [CacheRemoveAspect("Business.Abstract.IAuthorService.Get")]
         public IResult DeleteAll()
         {
             _authorDal.DeleteAll();
@@ -50,7 +51,7 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Author>>(_authorDal.GetAll());
         }
 
-        [CacheRemoveAspect("Business.Concrete.IAuthorService")]
+        [CacheRemoveAspect("Business.Abstract.IAuthorService.Get")]
         [ValidationAspect(typeof(AuthorValidator))]
         public IResult Update(Author author)
         {

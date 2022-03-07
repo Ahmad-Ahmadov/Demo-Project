@@ -8,7 +8,7 @@ namespace Core.CrossCuttingConcerns.Caching.MicrosoftMemoryCache
 {
     public class MemoryCacheManager : ICacheManager
     {
-        private IMemoryCache _memoryCache;
+        private readonly IMemoryCache _memoryCache;
 
         public MemoryCacheManager()
         {
@@ -37,10 +37,10 @@ namespace Core.CrossCuttingConcerns.Caching.MicrosoftMemoryCache
 
         public void RemoveByPattern(string pattern)
         {
-            var cacheEntriesCollectionDefiniton = typeof(MemoryCache)
+            var cacheEntriesCollectionDefinition = typeof(MemoryCache)
                 .GetProperty("EntriesCollection", BindingFlags.NonPublic | BindingFlags.Instance);
-            var cacheEntriesCollection = cacheEntriesCollectionDefiniton.GetValue(this._memoryCache) as dynamic;
-            List<ICacheEntry> cacheCollectionValues = new List<ICacheEntry>();
+            var cacheEntriesCollection = cacheEntriesCollectionDefinition.GetValue(this._memoryCache) as dynamic;
+            var cacheCollectionValues = new List<ICacheEntry>();
             foreach (var cacheCollectionItem in cacheEntriesCollection)
             {
                 ICacheEntry cacheItemValue = cacheCollectionItem.GetType()

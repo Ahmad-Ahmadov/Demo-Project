@@ -6,6 +6,7 @@ using Core.Result.Abstract;
 using Core.Result.Concrete;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.Dtos;
 
 namespace Business.Concrete
 {
@@ -17,7 +18,7 @@ namespace Business.Concrete
             _bookDal = bookDal;
         }
 
-        [CacheRemoveAspect("Business.Concrete.IBookService")]
+        [CacheRemoveAspect("Business.Abstract.IBookService.Get")]
         [ValidationAspect(typeof(BookValidator))]
         public IResult Add(Book book)
         {
@@ -25,14 +26,14 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
-        [CacheRemoveAspect("Business.Concrete.IBookService")]
+        [CacheRemoveAspect("Business.Abstract.IBookService.Get")]
         public IResult Delete(Book book)
         {
             _bookDal.Delete(book);
             return new SuccessResult();
         }
 
-        [CacheRemoveAspect("Business.Concrete.IBookService")]
+        [CacheRemoveAspect("Business.Abstract.IBookService.Get")]
         public IResult DeleteAll()
         {
             _bookDal.DeleteAll();
@@ -51,7 +52,13 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Book>>(_bookDal.GetAll());
         }
 
-        [CacheRemoveAspect("Business.Concrete.IBookService")]
+        [CacheAspect]
+        public IDataResult<List<BookDto>> GetBookDetails()
+        {
+            return new SuccessDataResult<List<BookDto>>(_bookDal.GetBookDetails());
+        }
+
+        [CacheRemoveAspect("Business.Abstract.IBookService.Get")]
         [ValidationAspect(typeof(BookValidator))]
         public IResult Update(Book book)
         {

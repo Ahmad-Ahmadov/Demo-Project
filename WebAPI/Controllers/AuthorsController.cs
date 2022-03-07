@@ -12,7 +12,7 @@ namespace WebAPI.Controllers
 
         public AuthorsController(IAuthorService authorService)
         {
-            _authorService = authorService;
+            this._authorService = authorService;
         }
 
         [HttpPost]

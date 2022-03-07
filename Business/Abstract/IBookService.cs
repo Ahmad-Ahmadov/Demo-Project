@@ -1,5 +1,6 @@
 ﻿using Core.Result.Abstract;
 using Entities.Concrete;
+using Entities.Dtos;
 
 namespace Business.Abstract
 {
@@ -11,5 +12,6 @@ namespace Business.Abstract
         IResult DeleteAll();
         IDataResult<Book> Get(int id);
         IDataResult<List<Book>> GetAll();
+        IDataResult<List<BookDto>> GetBookDetails();
     }
 }

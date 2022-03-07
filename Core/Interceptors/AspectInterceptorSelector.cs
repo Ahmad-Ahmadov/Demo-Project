@@ -10,7 +10,7 @@ namespace Core.Interceptors
         {
             var classAttributes = type.GetCustomAttributes<MethodInterceptionBaseAttribute>(true).ToList();
             var methodAttributes = type.GetMethod(method.Name).GetCustomAttributes<MethodInterceptionBaseAttribute>(true).ToList();
-           // classAttributes.Add(new ExceptionLogAspect(typeof(FileLogger)));
+             //classAttributes.Add(new ExceptionLogAspect(typeof(FileLogger)));
             classAttributes.AddRange(methodAttributes);
             return classAttributes.ToArray();
         }

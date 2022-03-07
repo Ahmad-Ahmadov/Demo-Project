@@ -11,7 +11,7 @@ namespace WebAPI.Controllers
         private readonly IBookService _bookService;
         public BooksController(IBookService bookService)
         {
-            _bookService = _bookService;
+            this._bookService = bookService;
         }
 
         [HttpPost]
@@ -77,6 +77,17 @@ namespace WebAPI.Controllers
                 return Ok(result); 
             }
             return BadRequest();
+        }
+
+        [HttpGet("getbookdetails")]
+        public IActionResult GetBookDetails()
+        {
+            var result = _bookService.GetBookDetails();
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
         }
     }
 }
