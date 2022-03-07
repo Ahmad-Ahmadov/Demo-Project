@@ -1,4 +1,5 @@
-﻿using DataAccess.Concrete.EntityFramework.Mappers;
+﻿using Core.Entities.Concrete;
+using DataAccess.Concrete.EntityFramework.Mappers;
 using Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,6 +10,9 @@ namespace DataAccess.Concrete.EntityFramework
         public DbSet<Book> Books { get; set; }
         public DbSet<Author> Authors { get; set; }
         public DbSet<Genre> Genres { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
+        public DbSet<OperationClaim> OperationClaims { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(@"Server=DESKTOP-9N0OBRE;Database=ProjectDb;Trusted_connection=True");
