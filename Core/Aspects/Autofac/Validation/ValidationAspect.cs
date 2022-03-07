@@ -7,11 +7,11 @@ namespace Core.Aspects.Autofac.Validation
 {
     public class ValidationAspect : MethodInterception
     {
-        private Type _validatorType;
+        private readonly Type _validatorType;
         public ValidationAspect(Type validatorType)
         {
             if (!typeof(IValidator).IsAssignableFrom(validatorType))
-                throw new Exception("Parameter must assignable from IValidator");
+                throw new System.Exception("Parameter must assignable from IValidator");
             _validatorType = validatorType;
         }
         protected override void OnBefore(IInvocation invocation)
