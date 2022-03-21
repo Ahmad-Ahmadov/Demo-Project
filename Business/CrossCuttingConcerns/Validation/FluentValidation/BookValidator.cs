@@ -9,6 +9,8 @@ namespace Business.CrossCuttingConcerns.Validation.FluentValidation
         {
             RuleFor(p=>p.Name).NotEmpty();
             RuleFor(p=>String.IsNullOrWhiteSpace(p.Name)).NotEqual(true);
+            RuleFor(p => p.Name).MinimumLength(2);
+            RuleFor(p => p.Name).MaximumLength(50);
 
             RuleFor(p=>p.AuthorId).NotEmpty();
             RuleFor(p=>p.AuthorId).GreaterThanOrEqualTo(1);

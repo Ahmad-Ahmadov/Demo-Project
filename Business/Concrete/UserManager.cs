@@ -1,4 +1,6 @@
 ﻿using Business.Abstract;
+using Business.CrossCuttingConcerns.Validation.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.Entities.Concrete;
 using Core.Result.Abstract;
 using Core.Result.Concrete;
@@ -15,6 +17,7 @@ namespace Business.Concrete
             _userDal = userDal;
         }
 
+        [ValidationAspect(typeof(UserValidator))]
         public IResult Add(User user)
         {
             _userDal.Add(user);
